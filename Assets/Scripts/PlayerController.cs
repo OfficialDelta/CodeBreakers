@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         // Assuming the sprite is initially facing right, set the localScale accordingly
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     void Update()
@@ -52,12 +52,12 @@ public class PlayerController : MonoBehaviour
         if (horizontal > 0)
         {
             // Moving right, flip the sprite to face right
-            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (horizontal < 0)
         {
             // Moving left, flip the sprite to face left
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
