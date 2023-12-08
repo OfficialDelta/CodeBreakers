@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class Interactable : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] answers;
     [SerializeField] private TextMeshProUGUI questionTextUI;
 
+    [SerializeField] private GameObject continueButton;
+
     public TextAsset jsonFile;
 
     private QuizData quizData;
 
-    public int questionNum;
+    private int questionNum = 0;
 
     private bool inBounds;
     public void OnInteract()
@@ -27,14 +30,19 @@ public class Interactable : MonoBehaviour
         inBounds = false;
     }
 
+    private void Start()
+    {
+        computerPanel.SetActive(false);
+        quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
+    }
+
     private void Update()
     {
         //Enter the computer
         if (inBounds && Input.GetKeyDown(KeyCode.E))
         {
             computerPanel.SetActive(true);
-            
-            
+            LoadQuizData();
         }
     }
 
@@ -46,17 +54,31 @@ public class Interactable : MonoBehaviour
 
     void LoadQuizData()
     {
-        quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
-        foreach (var _question in quizData.questions)
+        if (questionNum >= quizData.questions.Length)
         {
-            string questionText = _question.question;
-            string[] answerOptions = _question.answers;
+            ExitComputer();
+            return;
+        }
+        questionTextUI.text = quizData.questions[questionNum].question;
+        for (int i = 0; i < answers.Length; i++)
+        {
+            answers[i].text = quizData.questions[questionNum].answers[i];
+            answers[i].gameObject.GetComponentInParent<Image>().color = Color.white;
+        }
+    }
 
-            for (int i = 0; i < 4; i++)
-            {
-                answers[i].text = answerOptions[i];
-            }
-            questionTextUI.text = questionText;
+    public void CheckAnswer(int answerNum)
+    {
+        if (answerNum == quizData.questions[questionNum].correct)
+        {
+            answers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.green;
+            questionNum++;
+            // cooldown for 1 second
+            Invoke("LoadQuizData", 1f);
+        }
+        else
+        {
+            answers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.red;
         }
     }
 

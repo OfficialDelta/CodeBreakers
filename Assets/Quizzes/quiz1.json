@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "What makes a strong password?",
+      "answers": [
+        "Using common words or phrases.",
+        "A mix of letters, numbers, and special characters.",
+        "Your name or date of birth.",
+        "The same password for all accounts."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is 'Phishing'?",
+      "answers": [
+        "A type of software that damages your computer.",
+        "An attack that attempts to steal sensitive data through deceptive emails or messages.",
+        "A tool for fixing computer viruses.",
+        "Physically damaging a computer or network."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a Firewall used for in a computer network?",
+      "answers": [
+        "Speeding up the network.",
+        "Protecting a network by controlling incoming and outgoing network traffic based on predetermined security rules.",
+        "Connecting different networks together.",
+        "Storing data."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which of the following is considered a good practice for cybersecurity?",
+      "answers": [
+        "Opening email attachments from unknown senders.",
+        "Using the same password for multiple accounts.",
+        "Regularly updating software and operating systems.",
+        "Writing down your passwords on a sticky note."
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What should you do if you suspect a security breach in your system?",
+      "answers": [
+        "Ignore it and hope it resolves itself.",
+        "Immediately disconnect from the internet and notify your security team or relevant authority.",
+        "Share the information on social media to warn others.",
+        "Try to negotiate with the hacker."
+      ],
+      "correct": 1
+    }
+  ]
+}

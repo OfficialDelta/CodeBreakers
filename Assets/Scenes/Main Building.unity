@@ -315,7 +315,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 116445526}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -450,7 +450,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 198035226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1233754203}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &198035226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,8 +719,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1213,7 +1225,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 549632580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1233754203}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &549632580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,8 +1360,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1540,6 +1564,7 @@ MonoBehaviour:
   slideSpeed: 5
   interactText: {fileID: 2031320513}
   canWalk: 0
+  alertValue: 0
 --- !u!212 &730294979
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2932,8 +2957,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3132,7 +3157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1146768941}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1233754203}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1146768941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3184,7 +3221,7 @@ GameObject:
   - component: {fileID: 1233754204}
   - component: {fileID: 1233754203}
   m_Layer: 0
-  m_Name: Square
+  m_Name: ComputerInteractable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3202,7 +3239,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16315478d6fb2c941ab38048b17e1c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computerPanel: {fileID: 0}
+  computerPanel: {fileID: 1647739413}
+  answers:
+  - {fileID: 558551149}
+  - {fileID: 371398717}
+  - {fileID: 1064820679}
+  - {fileID: 1578663274}
+  questionTextUI: {fileID: 1245078620}
+  continueButton: {fileID: 116445524}
+  jsonFile: {fileID: 4900000, guid: ebee69188ba9041c0a419eeb8b704d40, type: 3}
 --- !u!61 &1233754204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3290,7 +3335,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3533,8 +3578,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3600,7 +3645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1647739414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3964,7 +4009,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1736251125}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1233754203}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ExitComputer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1736251127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4438,7 +4495,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2074718172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1233754203}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2074718172
 MonoBehaviour:
   m_ObjectHideFlags: 0

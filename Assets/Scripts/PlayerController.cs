@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject interactText;
     public bool canWalk;
+    public float alertValue = 0.0f;
 
     void Start()
     {
