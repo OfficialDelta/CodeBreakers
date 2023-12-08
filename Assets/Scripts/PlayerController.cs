@@ -11,33 +11,12 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 20.0f;
     public float slideSpeed = 5.0f;
 
-
-    [SerializeField] private GameObject scrollPrefab;
-    [SerializeField] private int numberOfScrolls = 30;
-    [SerializeField] private float startY = 0f;
-    [SerializeField] private float endY = 100f;
-    [SerializeField] private float staggerAmount = 1f;
-
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         // Assuming the sprite is initially facing right, set the localScale accordingly
         transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        for (int i = 0; i < numberOfScrolls; i++)
-        {
-            // Calculate the position
-            float yPos = Mathf.Lerp(startY, endY, (float)i / (numberOfScrolls - 1));
-            float xPos = Mathf.Lerp(-2f, 2f, Mathf.PingPong(i * staggerAmount, 1f));
-
-            // Instantiate the scrollPrefab at the calculated position
-            GameObject scroll = Instantiate(scrollPrefab, new Vector3(xPos, yPos, 0f), Quaternion.identity);
-
-            scroll.GetComponent<PickupController>().caseID = i;
-            // Optionally, you can set other properties of the spawned object or add it to a list, etc.
-        }
     }
 
     void Update()
