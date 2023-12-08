@@ -11,12 +11,18 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 20.0f;
     public float slideSpeed = 5.0f;
 
+    [SerializeField] private GameObject interactText;
+    public bool canWalk;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         // Assuming the sprite is initially facing right, set the localScale accordingly
         transform.localScale = new Vector3(1f, 1f, 1f);
+
+        interactText.SetActive(false);
+        canWalk = true;
     }
 
     void Update()
@@ -44,6 +50,25 @@ public class PlayerController : MonoBehaviour
             Vector2 normal = collision.contacts[0].normal;
             Vector2 slideDirection = Vector2.Reflect(rb.velocity, normal).normalized;
             rb.velocity = slideDirection * slideSpeed;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            collision.gameObject.GetComponent<Interactable>().OnInteract();
+            interactText.SetActive(true);
+            canWalk = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            collision.gameObject.GetComponent<Interactable>().OnInteractExit();
+            interactText.SetActive(false);
         }
     }
 
