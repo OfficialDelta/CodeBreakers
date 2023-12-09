@@ -70,6 +70,14 @@ public class ComputerInteractable : MonoBehaviour
             computerPanel.SetActive(true);
             LoadGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            gameNum++;
+            game1.SetActive(false);
+            game2.SetActive(false);
+            LoadGame();
+        }
     }
 
     void LoadGame()
