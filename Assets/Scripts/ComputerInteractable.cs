@@ -126,6 +126,7 @@ public class ComputerInteractable : MonoBehaviour
     {
         computerPanel.SetActive(false);
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().canWalk = true;
+        Time.timeScale = 1.0f;
     }
 
     void LoadIntro()
