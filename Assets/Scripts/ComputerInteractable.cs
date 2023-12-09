@@ -28,6 +28,7 @@ public class ComputerInteractable : MonoBehaviour
     private System.Random rng = new System.Random();
     public bool completed = false;
     public GameObject exitButton;
+    public int numGames;
 
     private T[] Shuffle<T>(T[] originalArray)
     {
@@ -59,13 +60,8 @@ public class ComputerInteractable : MonoBehaviour
 
     private void Awake()
     {
-        game1 = GameObject.Find("Game 1 - Vulnerability");
-        game2 = GameObject.Find("Game 2 - Data Decrypt");
-
-        if (game1 != null)
-            game1.SetActive(false);
-        if (game2 != null)
-            game2.SetActive(false);
+        game1.SetActive(false);
+        game2.SetActive(false);
         intro.SetActive(false);
 
         computerPanel.SetActive(false);
@@ -100,6 +96,7 @@ public class ComputerInteractable : MonoBehaviour
         switch (gameNum)
         {
             case -1:
+                exitButton.SetActive(true);
                 intro.SetActive(true);
                 LoadIntro();
                 break;
@@ -108,8 +105,16 @@ public class ComputerInteractable : MonoBehaviour
                 LoadQuizGame();
                 break;
             case 1:
-                game2.SetActive(true);
-                LoadDataDecryptGame();
+                if (numGames == 1)
+                {
+                    ExitComputer();
+                    completed = true;
+                }
+                else
+                {
+                    game2.SetActive(true);
+                    LoadDataDecryptGame();
+                }
                 break;
             default:
                 ExitComputer();
@@ -137,7 +142,7 @@ public class ComputerInteractable : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1.0f;
-        gameNum++;
+        gameNum=0;
         intro.SetActive(false);
         exitButton.SetActive(false);
         LoadGame();

@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "What is Ransomware?",
+      "answers": [
+        "Software that helps recover lost data.",
+        "Malware that locks data or systems and demands payment for access.",
+        "A program that helps track your digital transactions.",
+        "An antivirus program."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a Trojan Horse in cybersecurity?",
+      "answers": [
+        "A type of antivirus software.",
+        "A malicious program disguised as legitimate software.",
+        "An email that safely contains malware.",
+        "A secure way to send information over the internet."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is the purpose of Antivirus software?",
+      "answers": [
+        "To speed up your computer.",
+        "To monitor and remove malware and protect against cyber threats.",
+        "To clean the computer screen.",
+        "To increase internet speed."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What does a 'Denial of Service' attack aim to achieve?",
+      "answers": [
+        "Steal user data.",
+        "Slow down network speeds.",
+        "Interrupt services of a host connected to the Internet.",
+        "Send spam emails."
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What is 'Social Engineering' in the context of cybersecurity?",
+      "answers": [
+        "Designing social media platforms.",
+        "Manipulating people into revealing confidential information.",
+        "A field of engineering.",
+        "Building social networks."
+      ],
+      "correct": 1
+    }
+  ]
+}

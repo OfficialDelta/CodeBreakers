@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "What is two-factor authentication (2FA)?",
+      "answers": [
+        "Using two passwords for each account.",
+        "Using a password and another form of verification to access an account.",
+        "Having two antivirus programs installed.",
+        "Using the same password for two different accounts."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which of the following is an example of a strong password?",
+      "answers": [
+        "12345678",
+        "password123",
+        "your name or birthdate",
+        "Xy$8Lm!90@#z"
+      ],
+      "correct": 3
+    },
+    {
+      "question": "What is the purpose of a password manager?",
+      "answers": [
+        "To keep track of your passwords securely.",
+        "To create passwords for you.",
+        "To automatically log you into websites.",
+        "All of the above."
+      ],
+      "correct": 3
+    },
+    {
+      "question": "How often should you change your passwords?",
+      "answers": [
+        "Only when you remember to do so.",
+        "Every time you log into a site.",
+        "At regular intervals and after a security breach.",
+        "Never, if it's a strong password."
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What should you do if your password is leaked in a data breach?",
+      "answers": [
+        "Change the password immediately.",
+        "Ignore it if the password is strong.",
+        "Use the same password but add a number to it.",
+        "Close the account."
+      ],
+      "correct": 0
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "Why is it important to update your browser regularly?",
+      "answers": [
+        "To keep up with the latest trends.",
+        "To ensure you have the latest security patches and features.",
+        "To make sure the browser uses more memory.",
+        "To change the browser's appearance."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What should you do if you land on a website with a security certificate warning?",
+      "answers": [
+        "Ignore the warning and proceed.",
+        "Close the website immediately.",
+        "Contact the website owner.",
+        "Update your browser and try again."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which of the following is a sign of a secure website?",
+      "answers": [
+        "A website starting with http://",
+        "A website with no contact information.",
+        "A padlock icon next to the website's URL.",
+        "Lots of pop-up advertisements."
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What does 'Incognito' or 'Private' browsing mode do?",
+      "answers": [
+        "Speeds up your browsing.",
+        "Prevents websites from tracking your activity and doesn’t save your browsing history.",
+        "Blocks all websites.",
+        "Makes your browsing data public."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a Cookie in web browsing?",
+      "answers": [
+        "A program that steals personal information.",
+        "A small file stored on your computer by websites to remember your preferences.",
+        "A type of computer virus.",
+        "An error message."
+      ],
+      "correct": 1
+    }
+  ]
+}

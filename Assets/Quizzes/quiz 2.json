@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "What is a VPN commonly used for in cybersecurity?",
+      "answers": [
+        "Speeding up internet connection.",
+        "Encrypting data transmission for secure communication over the internet.",
+        "Storing large files online.",
+        "Monitoring employee internet usage."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is the primary function of an Intrusion Detection System (IDS)?",
+      "answers": [
+        "Preventing unauthorized access to systems.",
+        "Detecting and alerting on potential intrusions into a network or system.",
+        "Filtering spam from emails.",
+        "Storing backup data."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which of these is a common feature of Network Security?",
+      "answers": [
+        "Data encryption.",
+        "Password sharing.",
+        "Using default security settings.",
+        "Disabling the firewall."
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does SSL/TLS encryption provide for websites?",
+      "answers": [
+        "Increased website loading speed.",
+        "A secure connection between the web server and the user's browser.",
+        "A backup of the website's data.",
+        "Protection against power outages."
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which of the following best describes a Zero Trust security model?",
+      "answers": [
+        "A model that trusts all users inside the network.",
+        "No need for any cybersecurity measures.",
+        "A security model that requires verification from every user, regardless of their position inside or outside the network.",
+        "A model where only external connections are verified."
+      ],
+      "correct": 2
+    }
+  ]
+}
