@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Interactable"))
         {
-            collision.gameObject.GetComponent<Interactable>().OnInteract();
+            collision.gameObject.GetComponent<ComputerInteractable>().OnInteract();
             interactText.SetActive(true);
             canWalk = false;
         }
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Interactable"))
         {
-            collision.gameObject.GetComponent<Interactable>().OnInteractExit();
+            collision.gameObject.GetComponent<ComputerInteractable>().OnInteractExit();
             interactText.SetActive(false);
         }
     }
