@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,10 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject interactText;
     public bool canWalk;
-
     public float alertValue = 0.0f;
-
-    public Slider alertUI;
 
     void Start()
     {
@@ -29,8 +24,6 @@ public class PlayerController : MonoBehaviour
 
         interactText.SetActive(false);
         canWalk = true;
-
-        alertUI.value = 0;
     }
 
     void Update()
@@ -61,16 +54,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            alertValue += 1.0f * Time.deltaTime;
-            alertUI.value = alertValue;
-
-            if (alertValue >= 100.0f) Destroy(gameObject);
-        }
-    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Interactable"))
