@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public float alertValue = 0.0f;
     public Slider alertSlider;
 
+    public GameObject endPanel;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         interactText.SetActive(false);
         completedText.SetActive(false);
         canWalk = true;
+        endPanel.SetActive(false);
     }
 
     void Update()
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         // Update the animator parameter
         UpdateAnimator();
+        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene(0);
     }
 
     private void FixedUpdate()
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            alertValue += 0.3f * Time.deltaTime;
+            alertValue += 30f * Time.deltaTime;
             alertSlider.value = alertValue;
 
             if (alertValue >= 100.0f) SceneManager.LoadScene(0);
@@ -71,6 +75,7 @@ public class PlayerController : MonoBehaviour
             Vector2 slideDirection = Vector2.Reflect(rb.velocity, normal).normalized;
             rb.velocity = slideDirection * slideSpeed;
         }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -83,6 +88,11 @@ public class PlayerController : MonoBehaviour
             else
                 completedText.SetActive(true);
         }
+        if (collision.gameObject.CompareTag("End"))
+        {
+            endPanel.SetActive(true);
+            canWalk = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -92,6 +102,10 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.GetComponent<ComputerInteractable>().OnInteractExit();
             interactText.SetActive(false);
             completedText.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("End"))
+        {
+            endPanel.SetActive(false);
         }
     }
 

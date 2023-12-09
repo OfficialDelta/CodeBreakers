@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class ComputerInteractable : MonoBehaviour
@@ -28,7 +29,11 @@ public class ComputerInteractable : MonoBehaviour
     private System.Random rng = new System.Random();
     public bool completed = false;
     public GameObject exitButton;
-    public int numGames;
+    [SerializeField] private int numGames;
+    public GameObject redLight;
+    public GameObject greenLight;
+
+    [SerializeField] private int numGamessssss;
 
     private T[] Shuffle<T>(T[] originalArray)
     {
@@ -66,6 +71,9 @@ public class ComputerInteractable : MonoBehaviour
 
         computerPanel.SetActive(false);
         quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
+
+        redLight.SetActive(true);
+        greenLight.SetActive(false);
     }
 
     private void Update()
@@ -79,7 +87,7 @@ public class ComputerInteractable : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().canWalk = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && inBounds)
         {
             gameNum++;
             game1.SetActive(false);
@@ -105,13 +113,17 @@ public class ComputerInteractable : MonoBehaviour
                 LoadQuizGame();
                 break;
             case 1:
-                if (numGames == 1)
+                if (UnityEngine.Random.Range(0, 2) == 1)
                 {
-                    ExitComputer();
                     completed = true;
+                    redLight.SetActive(false);
+                    greenLight.SetActive(true);
+                    ExitComputer();
+                    Debug.Log("part 3");
                 }
                 else
                 {
+                    Debug.Log("part 4");
                     game2.SetActive(true);
                     LoadDataDecryptGame();
                 }
@@ -142,9 +154,11 @@ public class ComputerInteractable : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1.0f;
-        gameNum=0;
+        gameNum = 0;
         intro.SetActive(false);
         exitButton.SetActive(false);
+        questionNum = 0;
+        completed = false;
         LoadGame();
     }
 
@@ -154,7 +168,7 @@ public class ComputerInteractable : MonoBehaviour
         if (questionNum >= quizData.questions.Length)
         {
             Debug.Log(questionNum);
-            gameNum++;
+            gameNum=1;
             game1.SetActive(false);
             LoadGame();
             return;
@@ -225,7 +239,7 @@ public class ComputerInteractable : MonoBehaviour
             {
                 quizAnswers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.green;
                 questionNum++;
-                Invoke("LoadQuizGame", 0.0f);
+                Invoke("LoadQuizGame", 0.1f);
             }
             else
             {
@@ -233,7 +247,6 @@ public class ComputerInteractable : MonoBehaviour
 
                 canClick = false;
                 // cooldown for 1 second
-                Invoke("LoadQuizGame", 1.0f);
             }
         }
     }

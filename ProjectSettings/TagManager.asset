@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Interactable
   - Enemy
+  - End
   layers:
   - Default
   - TransparentFX
