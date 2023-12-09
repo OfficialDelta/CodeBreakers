@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ComputerInteractable : MonoBehaviour
 {
     public GameObject computerPanel;
-    private int gameNum = 0;
+    private int gameNum = -1;
 
 
     public GameObject game1;
@@ -23,8 +23,12 @@ public class ComputerInteractable : MonoBehaviour
     [SerializeField] private Texture2D[] dataDecryptImages;
     [SerializeField] private GameObject[] dropZones;
     bool imagesLoaded = false;
+    bool canClick = true;
 
     private System.Random rng = new System.Random();
+    public bool completed = false;
+    public GameObject exitButton;
+
     private T[] Shuffle<T>(T[] originalArray)
     {
         T[] array = (T[])originalArray.Clone();
@@ -41,6 +45,9 @@ public class ComputerInteractable : MonoBehaviour
     }
 
     private bool inBounds;
+
+    public GameObject intro;
+
     public void OnInteract()
     {
         inBounds = true;
@@ -55,8 +62,11 @@ public class ComputerInteractable : MonoBehaviour
         game1 = GameObject.Find("Game 1 - Vulnerability");
         game2 = GameObject.Find("Game 2 - Data Decrypt");
 
-        game1.SetActive(false);
-        game2.SetActive(false);
+        if (game1 != null)
+            game1.SetActive(false);
+        if (game2 != null)
+            game2.SetActive(false);
+        intro.SetActive(false);
 
         computerPanel.SetActive(false);
         quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
@@ -65,10 +75,12 @@ public class ComputerInteractable : MonoBehaviour
     private void Update()
     {
         //Enter the computer
-        if (inBounds && Input.GetKeyDown(KeyCode.E))
+        if (inBounds && Input.GetKeyDown(KeyCode.E) && !completed)
         {
+            gameNum = -1;
             computerPanel.SetActive(true);
             LoadGame();
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().canWalk = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -76,6 +88,9 @@ public class ComputerInteractable : MonoBehaviour
             gameNum++;
             game1.SetActive(false);
             game2.SetActive(false);
+            completed = true;
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().completedText.SetActive(true);
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().interactText.SetActive(true);
             LoadGame();
         }
     }
@@ -84,6 +99,10 @@ public class ComputerInteractable : MonoBehaviour
     {
         switch (gameNum)
         {
+            case -1:
+                intro.SetActive(true);
+                LoadIntro();
+                break;
             case 0:
                 game1.SetActive(true);
                 LoadQuizGame();
@@ -109,8 +128,23 @@ public class ComputerInteractable : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().canWalk = true;
     }
 
+    void LoadIntro()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1.0f;
+        gameNum++;
+        intro.SetActive(false);
+        exitButton.SetActive(false);
+        LoadGame();
+    }
+
     void LoadQuizGame()
     {
+        canClick = true;
         if (questionNum >= quizData.questions.Length)
         {
             Debug.Log(questionNum);
@@ -179,16 +213,22 @@ public class ComputerInteractable : MonoBehaviour
 
     public void CheckAnswer(int answerNum)
     {
-        if (answerNum == quizData.questions[questionNum].correct)
+        if (canClick)
         {
-            quizAnswers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.green;
-            questionNum++;
-            // cooldown for 1 second
-            Invoke("LoadQuizGame", 1f);
-        }
-        else
-        {
-            quizAnswers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.red;
+            if (answerNum == quizData.questions[questionNum].correct)
+            {
+                quizAnswers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.green;
+                questionNum++;
+                Invoke("LoadQuizGame", 0.0f);
+            }
+            else
+            {
+                quizAnswers[answerNum].gameObject.GetComponentInParent<Image>().color = Color.red;
+
+                canClick = false;
+                // cooldown for 1 second
+                Invoke("LoadQuizGame", 1.0f);
+            }
         }
     }
 

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +14,11 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 20.0f;
     public float slideSpeed = 5.0f;
 
-    [SerializeField] private GameObject interactText;
-    public bool canWalk;
+    [SerializeField] public GameObject interactText;
+    [SerializeField] public GameObject completedText;
+    public bool canWalk = true;
     public float alertValue = 0.0f;
+    public Slider alertSlider;
 
     void Start()
     {
@@ -23,13 +28,17 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(1f, 1f, 1f);
 
         interactText.SetActive(false);
+        completedText.SetActive(false);
         canWalk = true;
     }
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if (canWalk != false)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
 
         // Flip the sprite based on the movement direction
         FlipSprite();
@@ -44,6 +53,16 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movement * runSpeed;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            alertValue += 0.3f * Time.deltaTime;
+            alertSlider.value = alertValue;
+
+            if (alertValue >= 100.0f) SceneManager.LoadScene(0);
+        }
+    }
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -59,8 +78,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Interactable"))
         {
             collision.gameObject.GetComponent<ComputerInteractable>().OnInteract();
-            interactText.SetActive(true);
-            canWalk = false;
+            if (!collision.gameObject.GetComponent<ComputerInteractable>().completed)
+                interactText.SetActive(true);
+            else
+                completedText.SetActive(true);
         }
     }
 
@@ -70,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.GetComponent<ComputerInteractable>().OnInteractExit();
             interactText.SetActive(false);
+            completedText.SetActive(false);
         }
     }
 
